@@ -31,7 +31,7 @@ RUN apt-get -y update && \
 RUN wget https://bootstrap.pypa.io/get-pip.py && \
 	python3 get-pip.py && \
 	rm get-pip.py && \
-	pip3 install numpy
+	pip3 install numpy matplotlib scipy
 
 
 # Install OpenCV
@@ -89,13 +89,3 @@ RUN mkdir /opencv/build && cd /opencv/build && \
 WORKDIR /Desktop
 # Define default command.
 CMD ["python3 --version"]
-
-
-
-
-
-FROM alpine:3.4
-RUN echo "http://dl-8.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-RUN apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev openblas-dev
-RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
-RUN pip install scipy matplotlib
